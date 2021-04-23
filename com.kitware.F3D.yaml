@@ -111,16 +111,17 @@ modules:
           - type: archive
             url: https://github.com/ospray/rkcommon/archive/refs/tags/v1.6.0.tar.gz
             sha256: 24d0c9c58a4d2f22075850df170ec5732cfaa0a16f22f90dbd6538232be009b0
-      - name: openvkl
-        buildsystem: cmake
-        builddir: true
-        config-opts:
-          - -DBUILD_EXAMPLES:BOOL=OFF
-          - -DBUILD_BENCHMARKS:BOOL=OFF
-        sources:
-          - type: archive
-            url: https://github.com/openvkl/openvkl/archive/refs/tags/v0.12.1.tar.gz
-            sha256: 58ce13fe09699a9966b665c89fac0fca96a1155606889e11ec8f0fc34834e25a
+      # openVKL need ISPC 1.14.1 which OSPRay 1.8.0 does not work with, wait for VTK to update OSPRay requirement.       
+      #- name: openvkl
+        #buildsystem: cmake
+        #builddir: true
+        #config-opts:
+          #- -DBUILD_EXAMPLES:BOOL=OFF
+          #- -DBUILD_BENCHMARKS:BOOL=OFF
+        #sources:
+          #- type: archive
+            #url: https://github.com/openvkl/openvkl/archive/refs/tags/v0.12.1.tar.gz
+            #sha256: 58ce13fe09699a9966b665c89fac0fca96a1155606889e11ec8f0fc34834e25a
  
     # When VTK update, update OSPRay, Embree, TBB, ISPC, and OpenImageDenoise too.
     # Needed OSPRay version can be found in vtk/Rendering/RayTracing/CMakeLists.txt
