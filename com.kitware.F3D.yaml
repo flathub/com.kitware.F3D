@@ -15,6 +15,7 @@ cleanup:
   - /include
   - /lib/cmake
   - /share/doc
+  - /etc
   - "*.la"
   - "*.a"
 
@@ -174,6 +175,7 @@ modules:
             url: https://github.com/OpenImageDenoise/oidn/releases/download/v1.1.0/oidn-1.1.0.src.tar.gz
             sha256: 4dd484abea8a0b3d12d346343fcb1ab7abef8f94318d8c537f69a20c2a75c4eb
 
+    # Move config.json as upstream request.
   - name: F3D
     buildsystem: cmake-ninja
     config-opts:
@@ -185,6 +187,7 @@ modules:
       - -DF3D_MODULE_RAYTRACING:BOOL=ON
       - -DF3D_MODULE_OCCT:BOOL=OFF
     post-install:
+      - mv /app/etc/f3d/config.json /app/config.json
       - install -D resources/logo.svg /app/share/icons/hicolor/scalable/apps/$FLATPAK_ID.svg
       - desktop-file-edit --set-key=Icon --set-value=$FLATPAK_ID /app/share/applications/f3d.desktop
       - install -Dm644 $FLATPAK_ID.metainfo.xml /app/share/metainfo/$FLATPAK_ID.metainfo.xml
@@ -194,5 +197,3 @@ modules:
         sha256: 93aa9759efcc4e77beac4568280aaeaca21bfb233d3c9f60262207ca595bde79
       - type: file
         path: com.kitware.F3D.metainfo.xml
-    
-  
