@@ -36,6 +36,12 @@ modules:
     cleanup:
       - '*'
   - name: hdf5
+    buildsystem: cmake-ninja
+    builddir: true
+    config-opts:
+      - -DCMAKE_BUILD_TYPE=RelWithDebInfo
+      - -DBUILD_TESTING:BOOL=OFF
+      - -DHDF5_BUILD_EXAMPLES:BOOL=OFF
     cleanup:
       - /share/hdf5_examples
     sources:
