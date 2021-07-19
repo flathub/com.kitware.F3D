@@ -15,12 +15,12 @@ cleanup:
   - /lib/cmake
   - /share/doc
   - /etc
-  - "*.la"
-  - "*.a"
+  - '*.la'
+  - '*.a'
 
 modules:
   - shared-modules/glew/glew.json
-  
+
   - name: Eigen3
     buildsystem: cmake-ninja
     builddir: true
@@ -28,9 +28,13 @@ modules:
       - type: archive
         url: https://gitlab.com/libeigen/eigen/-/archive/3.3.9/eigen-3.3.9.tar.bz2
         sha256: 0fa5cafe78f66d2b501b43016858070d52ba47bd9b1016b0165a7b8e04675677
-    cleanup: 
-      - "*"
-      
+        x-checker-data:
+          type: anitya
+          project-id: 13751
+          stable-only: true
+          url-template: https://gitlab.com/libeigen/eigen/-/archive/$version/eigen-$version.tar.bz2
+    cleanup:
+      - '*'
   - name: hdf5
     buildsystem: cmake-ninja
     builddir: true
@@ -38,11 +42,18 @@ modules:
       - -DCMAKE_BUILD_TYPE=RelWithDebInfo
       - -DBUILD_TESTING:BOOL=OFF
       - -DHDF5_BUILD_EXAMPLES:BOOL=OFF
+    cleanup:
+      - /share/hdf5_examples
     sources:
       - type: archive
-        url: https://support.hdfgroup.org/ftp/HDF5/releases/hdf5-1.12/hdf5-1.12.0/src/hdf5-1.12.0.tar.gz
-        sha256: a62dcb276658cb78e6795dd29bf926ed7a9bc4edf6e77025cd2c689a8f97c17a
- 
+        url: https://github.com/HDFGroup/hdf5/archive/refs/tags/hdf5-1_12_1.tar.gz
+        sha256: e6dde173c2d243551922d23a0387a79961205b018502e6a742acb30b61bc2d5f
+        x-checker-data:
+          type: anitya
+          project-id: 1303
+          stable-only: true
+          url-template: https://github.com/HDFGroup/hdf5/archive/refs/tags/hdf5-$version.tar.gz
+
     # OSPRay 1.8.0 use Embree 3.4.0  
   #- name: Embree
     #buildsystem: cmake-ninja
@@ -95,7 +106,6 @@ modules:
           #- type: archive
             #url: https://github.com/oneapi-src/oneTBB/releases/download/2019_U3/tbb2019_20181203oss_lin.tgz
             #sha256: 53163b20f911d738e9fa324d320db1154b5c04a6e93f3b69b1dc35fa9ddb80b7
-            
     # For ray tracing
     # VTK need old version of OSPRay, would not take new version.
     # Old version of OSPRay need old TBB.
@@ -127,50 +137,54 @@ modules:
           #- type: archive
             #url: https://github.com/openvkl/openvkl/archive/refs/tags/v0.12.1.tar.gz
             #sha256: 58ce13fe09699a9966b665c89fac0fca96a1155606889e11ec8f0fc34834e25a
- 
     # When VTK update, update OSPRay, Embree, TBB, ISPC, and OpenImageDenoise too.
     # Needed OSPRay version can be found in vtk/Rendering/RayTracing/CMakeLists.txt
   - name: VTK
     buildsystem: cmake-ninja
     builddir: true
     config-opts:
-    - -DBUILD_SHARED_LIBS=ON
-    - -DOpenGL_GL_PREFERENCE=GLVND
-    - -DBUILD_TESTING:BOOL=OFF
-    - -DVTK_USE_SYSTEM_ZLIB:BOOL=ON
-    - -DVTK_USE_SYSTEM_EIGEN:BOOL=ON
-    - -DVTK_BUILD_QT_DESIGNER_PLUGIN:BOOL=OFF
-    - -DCMAKE_BUILD_TYPE=Release
-    - -DVTK_LEGACY_REMOVE:BOOL=ON
+      - -DBUILD_SHARED_LIBS=ON
+      - -DOpenGL_GL_PREFERENCE=GLVND
+      - -DBUILD_TESTING:BOOL=OFF
+      - -DVTK_USE_SYSTEM_ZLIB:BOOL=ON
+      - -DVTK_USE_SYSTEM_EIGEN:BOOL=ON
+      - -DVTK_BUILD_QT_DESIGNER_PLUGIN:BOOL=OFF
+      - -DCMAKE_BUILD_TYPE=Release
+      - -DVTK_LEGACY_REMOVE:BOOL=ON
     #- -DVTK_MODULE_ENABLE_VTK_RenderingRayTracing=WANT
     #- -DVTKOSPRAY_ENABLE_DENOISER:BOOL=ON
-    - -DVTK_GROUP_ENABLE_Rendering=DEFAULT 
-    - -DVTK_GROUP_ENABLE_StandAlone=DEFAULT 
-    - -DVTK_MODULE_ENABLE_VTK_CommonSystem=YES 
-    - -DVTK_MODULE_ENABLE_VTK_FiltersGeneral=YES 
-    - -DVTK_MODULE_ENABLE_VTK_FiltersGeometry=YES 
-    - -DVTK_MODULE_ENABLE_VTK_ImagingCore=YES 
-    - -DVTK_MODULE_ENABLE_VTK_ImagingHybrid=YES 
-    - -DVTK_MODULE_ENABLE_VTK_InteractionStyle=YES 
-    - -DVTK_MODULE_ENABLE_VTK_InteractionWidgets=YES 
-    - -DVTK_MODULE_ENABLE_VTK_IOCityGML=YES
-    - -DVTK_MODULE_ENABLE_VTK_IOExodus=YES
-    - -DVTK_MODULE_ENABLE_VTK_IOGeometry=YES
-    - -DVTK_MODULE_ENABLE_VTK_IOImage=YES
-    - -DVTK_MODULE_ENABLE_VTK_IOImport=YES
-    - -DVTK_MODULE_ENABLE_VTK_IOParallel=YES
-    - -DVTK_MODULE_ENABLE_VTK_IOPLY=YES
-    - -DVTK_MODULE_ENABLE_VTK_IOXML=YES
-    - -DVTK_MODULE_ENABLE_VTK_RenderingAnnotation=YES
-    - -DVTK_MODULE_ENABLE_VTK_RenderingCore=YES
-    - -DVTK_MODULE_ENABLE_VTK_RenderingLabel=YES
-    - -DVTK_MODULE_ENABLE_VTK_RenderingOpenGL2=YES
-    - -DVTK_MODULE_ENABLE_VTK_RenderingVolumeOpenGL2=YES
-    - -DVTK_MODULE_ENABLE_VTK_jsoncpp=YES
+      - -DVTK_GROUP_ENABLE_Rendering=DEFAULT
+      - -DVTK_GROUP_ENABLE_StandAlone=DEFAULT
+      - -DVTK_MODULE_ENABLE_VTK_CommonSystem=YES
+      - -DVTK_MODULE_ENABLE_VTK_FiltersGeneral=YES
+      - -DVTK_MODULE_ENABLE_VTK_FiltersGeometry=YES
+      - -DVTK_MODULE_ENABLE_VTK_ImagingCore=YES
+      - -DVTK_MODULE_ENABLE_VTK_ImagingHybrid=YES
+      - -DVTK_MODULE_ENABLE_VTK_InteractionStyle=YES
+      - -DVTK_MODULE_ENABLE_VTK_InteractionWidgets=YES
+      - -DVTK_MODULE_ENABLE_VTK_IOCityGML=YES
+      - -DVTK_MODULE_ENABLE_VTK_IOExodus=YES
+      - -DVTK_MODULE_ENABLE_VTK_IOGeometry=YES
+      - -DVTK_MODULE_ENABLE_VTK_IOImage=YES
+      - -DVTK_MODULE_ENABLE_VTK_IOImport=YES
+      - -DVTK_MODULE_ENABLE_VTK_IOParallel=YES
+      - -DVTK_MODULE_ENABLE_VTK_IOPLY=YES
+      - -DVTK_MODULE_ENABLE_VTK_IOXML=YES
+      - -DVTK_MODULE_ENABLE_VTK_RenderingAnnotation=YES
+      - -DVTK_MODULE_ENABLE_VTK_RenderingCore=YES
+      - -DVTK_MODULE_ENABLE_VTK_RenderingLabel=YES
+      - -DVTK_MODULE_ENABLE_VTK_RenderingOpenGL2=YES
+      - -DVTK_MODULE_ENABLE_VTK_RenderingVolumeOpenGL2=YES
+      - -DVTK_MODULE_ENABLE_VTK_jsoncpp=YES
     sources:
       - type: archive
-        url: https://www.vtk.org/files/release/9.0/VTK-9.0.1.tar.gz
-        sha256: 1b39a5e191c282861e7af4101eaa8585969a2de05f5646c9199a161213a622c7
+        url: https://www.vtk.org/files/release/9.0/VTK-9.0.3.tar.gz
+        sha256: bc3eb9625b2b8dbfecb6052a2ab091fc91405de4333b0ec68f3323815154ed8a
+        x-checker-data:
+          type: anitya
+          project-id: 15084
+          stable-only: true
+          url-template: https://www.vtk.org/files/release/$major.$minor/VTK-$version.tar.gz
     #modules:
         # New version of OpenImageDenoise need new version of ISPC which we are using old ISPC.
       #- name: OpenImageDenoise
@@ -187,7 +201,7 @@ modules:
       - -DCMAKE_INSTALL_PREFIX:PATH=/app
       - -DCMAKE_BUILD_TYPE:STRING=Release
       - -DBUILD_TESTING:BOOL=OFF
-      - -DF3D_INSTALL_DEFAULT_CONFIGURATION_FILE:BOOL=ON 
+      - -DF3D_INSTALL_DEFAULT_CONFIGURATION_FILE:BOOL=ON
       - -DF3D_MODULE_EXODUS:BOOL=ON
       - -DF3D_MODULE_RAYTRACING:BOOL=OFF
       - -DF3D_MODULE_OCCT:BOOL=OFF
@@ -200,5 +214,10 @@ modules:
       - type: archive
         url: https://gitlab.kitware.com/f3d/f3d/-/archive/v1.1.0/f3d-v1.1.0.tar.gz
         sha256: 93aa9759efcc4e77beac4568280aaeaca21bfb233d3c9f60262207ca595bde79
+        x-checker-data:
+          type: anitya
+          project-id: 223019
+          stable-only: true
+          url-template: https://gitlab.kitware.com/f3d/f3d/-/archive/v$version/f3d-v$version.tar.gz
       - type: file
         path: com.kitware.F3D.metainfo.xml
