@@ -9,7 +9,6 @@ finish-args:
   - --socket=wayland
   - --socket=fallback-x11
   - --device=dri
-  - --filesystem=home
 cleanup:
   - /include
   - /lib/cmake
@@ -216,7 +215,7 @@ modules:
         sha256: 93aa9759efcc4e77beac4568280aaeaca21bfb233d3c9f60262207ca595bde79
         x-checker-data:
           type: anitya
-          project-id: 223019
+          project-id: 224911
           stable-only: true
           url-template: https://gitlab.kitware.com/f3d/f3d/-/archive/v$version/f3d-v$version.tar.gz
       - type: file

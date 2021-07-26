@@ -25,6 +25,8 @@
             .ex2/.e/.exo/.g : Exodus 2 file format
             .gml : CityGML file format
             .pts : Point Cloud file format
+            .step/.stp : CAD STEP exchange ISO format
+            .iges/.igs : CAD Initial Graphics Exchange Specification format
             .obj : Wavefront OBJ file format (full scene)
             .gltf/.glb : GL Transmission Format (full scene)
             .3ds : Autodesk 3DS Max file format (full scene)
