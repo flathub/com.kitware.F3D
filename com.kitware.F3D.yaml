@@ -194,6 +194,17 @@ modules:
             #url: https://github.com/OpenImageDenoise/oidn/releases/download/v1.1.0/oidn-1.1.0.src.tar.gz
             #sha256: 4dd484abea8a0b3d12d346343fcb1ab7abef8f94318d8c537f69a20c2a75c4eb
 
+  - name: OCCT
+    buildsystem: cmake-ninja
+    config-opts:
+    sources:
+      - type: git
+        url: git://github.com/Open-Cascade-SAS/OCCT.git
+        tag: V7_5_0
+        commit: 628c0211d53c7fe1036a85e7a7b2b067c9c50f7a
+        x-checker-data:
+          type: git
+
     # Move config.json as upstream request.
   - name: F3D
     buildsystem: cmake-ninja
@@ -204,7 +215,7 @@ modules:
       - -DF3D_INSTALL_DEFAULT_CONFIGURATION_FILE:BOOL=ON
       - -DF3D_MODULE_EXODUS:BOOL=ON
       - -DF3D_MODULE_RAYTRACING:BOOL=OFF
-      - -DF3D_MODULE_OCCT:BOOL=OFF
+      - -DF3D_MODULE_OCCT:BOOL=ON
     post-install:
       - mv /app/etc/f3d/config.json /app/config.json
       - install -D resources/logo.svg /app/share/icons/hicolor/scalable/apps/$FLATPAK_ID.svg
