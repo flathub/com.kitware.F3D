@@ -194,6 +194,66 @@ modules:
             #url: https://github.com/OpenImageDenoise/oidn/releases/download/v1.1.0/oidn-1.1.0.src.tar.gz
             #sha256: 4dd484abea8a0b3d12d346343fcb1ab7abef8f94318d8c537f69a20c2a75c4eb
 
+  - name: Tcl
+    buildsystem: autotools
+    subdir: unix
+    build-options:
+      no-debuginfo : true
+    sources:
+      - type: archive
+        url: https://prdownloads.sourceforge.net/tcl/tcl8.7a5-src.tar.gz
+        sha256: 8a01858a8e8ab812faa7aa9af8dcc1c01891be9d69554b0178a4236ba1c0a1f0
+        x-checker-data:
+          type: anitya
+          project-id: 4941
+          stable-only: true
+          url-template: https://prdownloads.sourceforge.net/tcl/tcl$version-src.tar.gz
+
+  - name: tk
+    subdir: unix
+    build-options:
+      no-debuginfo: true
+    make-install-args:
+      - install-private-headers
+    cleanup:
+      - /bin
+      - /man
+    sources:
+      - type: archive
+        url: https://prdownloads.sourceforge.net/tcl/tk8.7a5-src.tar.gz
+        sha256: 1d4b005cf67bbc65cd67db04ed7bc97ec92d75843bf0cb1677a116e8a30f3524
+        x-checker-data:
+          type: anitya
+          project-id: 11426
+          stable-only: true
+          url-template: https://prdownloads.sourceforge.net/tcl/tk$version-src.tar.gz
+
+  - name: libXmu
+    cleanup:
+      - /share/doc
+    sources:
+      - type: archive
+        url: https://www.x.org/archive/individual/lib/libXmu-1.1.3.tar.gz
+        sha256: 5bd9d4ed1ceaac9ea023d86bf1c1632cd3b172dce4a193a72a94e1d9df87a62e
+        x-checker-data:
+          type: anitya
+          project-id: 1785
+          stable-only: true
+          url-template: https://www.x.org/archive/individual/lib/libXmu-$version.tar.gz
+
+  - name: OCCT
+    buildsystem: cmake-ninja
+    config-opts:
+      - -D3RDPARTY_TK_INCLUDE_DIR:PATH=/app/include
+    sources:
+      - type: git
+        url: git://github.com/Open-Cascade-SAS/OCCT.git
+        tag: V7_5_0
+        commit: 628c0211d53c7fe1036a85e7a7b2b067c9c50f7a
+        x-checker-data:
+          type: git
+          tag-pattern: ^(V[\d._]+)$
+
     # Move config.json as upstream request.
   - name: F3D
     buildsystem: cmake-ninja
@@ -204,7 +264,7 @@ modules:
       - -DF3D_INSTALL_DEFAULT_CONFIGURATION_FILE:BOOL=ON
       - -DF3D_MODULE_EXODUS:BOOL=ON
       - -DF3D_MODULE_RAYTRACING:BOOL=OFF
-      - -DF3D_MODULE_OCCT:BOOL=OFF
+      - -DF3D_MODULE_OCCT:BOOL=ON
     post-install:
       - mv /app/etc/f3d/config.json /app/config.json
       - install -D resources/logo.svg /app/share/icons/hicolor/scalable/apps/$FLATPAK_ID.svg
@@ -216,7 +276,7 @@ modules:
         sha256: 93aa9759efcc4e77beac4568280aaeaca21bfb233d3c9f60262207ca595bde79
         x-checker-data:
           type: anitya
-          project-id: 223019
+          project-id: 224911
           stable-only: true
           url-template: https://gitlab.kitware.com/f3d/f3d/-/archive/v$version/f3d-v$version.tar.gz
       - type: file
