@@ -198,11 +198,11 @@ modules:
     buildsystem: autotools
     subdir: unix
     build-options:
-      no-debuginfo : true
+      no-debuginfo: true
     sources:
       - type: archive
-        url: https://prdownloads.sourceforge.net/tcl/tcl8.7a5-src.tar.gz
-        sha256: 8a01858a8e8ab812faa7aa9af8dcc1c01891be9d69554b0178a4236ba1c0a1f0
+        url: https://prdownloads.sourceforge.net/tcl/tcl8.6.11-src.tar.gz
+        sha256: 8c0486668586672c5693d7d95817cb05a18c5ecca2f40e2836b9578064088258
         x-checker-data:
           type: anitya
           project-id: 4941
@@ -220,8 +220,8 @@ modules:
       - /man
     sources:
       - type: archive
-        url: https://prdownloads.sourceforge.net/tcl/tk8.7a5-src.tar.gz
-        sha256: 1d4b005cf67bbc65cd67db04ed7bc97ec92d75843bf0cb1677a116e8a30f3524
+        url: https://prdownloads.sourceforge.net/tcl/tk8.6.11.1-src.tar.gz
+        sha256: 006cab171beeca6a968b6d617588538176f27be232a2b334a0e96173e89909be
         x-checker-data:
           type: anitya
           project-id: 11426
