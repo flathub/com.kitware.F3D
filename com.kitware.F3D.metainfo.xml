@@ -1,36 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <component type="desktop">
     <id>com.kitware.F3D</id>
-    <launchable type="desktop-id">com.kitware.F3D.desktop</launchable>
+    <launchable type="desktop-id">f3d.desktop</launchable>
     <name>F3D</name>
-    <summary>Free and open source minimalist 3D viewer</summary>
+    <summary>A fast and minimalist 3D viewer</summary>
     <metadata_license>CC0-1.0</metadata_license>
     <project_license>BSD-3-Clause</project_license>
     <description>
         <p>
-            A VTK-based 3D viewer following the KISS principle, so it is minimalist, 
-            efficient, has no GUI, has simple interaction mechanisms and is fully 
+            A VTK-based 3D viewer following the KISS principle, so it is minimalist,
+            efficient, has no GUI, has simple interaction mechanisms and is fully
             controllable using arguments in the command line.
-        </p>
-        <p>
-            List of supported file formats:
-            .vtk : the legacy VTK format
-            .vt[p|u|r|i|s|m] : XML based VTK formats
-            .ply : Polygon File format
-            .stl : Standard Triangle Language format
-            .dcm : DICOM file format
-            .nrrd/.nhrd : “nearly raw raster data” file format
-            .mhd/.mha : MetaHeader MetaIO file format
-            .tif/.tiff : TIFF 2D/3D file format
-            .ex2/.e/.exo/.g : Exodus 2 file format
-            .gml : CityGML file format
-            .pts : Point Cloud file format
-            .step/.stp : CAD STEP exchange ISO format
-            .iges/.igs : CAD Initial Graphics Exchange Specification format
-            .obj : Wavefront OBJ file format (full scene)
-            .gltf/.glb : GL Transmission Format (full scene)
-            .3ds : Autodesk 3DS Max file format (full scene)
-            .wrl : VRML file format (full scene)
         </p>
     </description>
     <url type="homepage">https://kitware.github.io/F3D/</url>
@@ -67,4 +47,4 @@
         <release version="1.1.0" date="2021-01-07">
     </release>
   </releases>
-</component> 
+</component>
