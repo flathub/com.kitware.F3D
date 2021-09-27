@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <component type="desktop">
     <id>com.kitware.F3D</id>
-    <launchable type="desktop-id">f3d.desktop</launchable>
+    <launchable type="desktop-id">com.kitware.F3D.desktop</launchable>
     <name>F3D</name>
     <summary>A fast and minimalist 3D viewer</summary>
     <metadata_license>CC0-1.0</metadata_license>
