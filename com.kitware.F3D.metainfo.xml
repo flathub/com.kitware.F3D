@@ -3,37 +3,15 @@
     <id>com.kitware.F3D</id>
     <launchable type="desktop-id">com.kitware.F3D.desktop</launchable>
     <name>F3D</name>
-    <summary>Free and open source minimalist 3D viewer</summary>
+    <summary>A fast and minimalist 3D viewer</summary>
     <metadata_license>CC0-1.0</metadata_license>
     <project_license>BSD-3-Clause</project_license>
     <description>
         <p>
-            A VTK-based 3D viewer following the KISS principle, so it is minimalist, 
-            efficient, has no GUI, has simple interaction mechanisms and is fully 
+            A VTK-based 3D viewer following the KISS principle, so it is minimalist,
+            efficient, has no GUI, has simple interaction mechanisms and is fully
             controllable using arguments in the command line.
         </p>
-        <p>
-            List of supported file formats:
-        </p>
-        <ul>
-            <li>.vtk : the legacy VTK format</li>
-            <li>.vt[p|u|r|i|s|m] : XML based VTK formats</li>
-            <li>.ply : Polygon File format</li>
-            <li>.stl : Standard Triangle Language format</li>
-            <li>.dcm : DICOM file format</li>
-            <li>.nrrd/.nhrd : “nearly raw raster data” file format</li>
-            <li>.mhd/.mha : MetaHeader MetaIO file format</li>
-            <li>.tif/.tiff : TIFF 2D/3D file format</li>
-            <li>.ex2/.e/.exo/.g : Exodus 2 file format</li>
-            <li>.gml : CityGML file format</li>
-            <li>.pts : Point Cloud file format</li>
-            <li>.step/.stp : CAD STEP exchange ISO format</li>
-            <li>.iges/.igs : CAD Initial Graphics Exchange Specification format</li>
-            <li>.obj : Wavefront OBJ file format (full scene)</li>
-            <li>.gltf/.glb : GL Transmission Format (full scene)</li>
-            <li>.3ds : Autodesk 3DS Max file format (full scene)</li>
-            <li>.wrl : VRML file format (full scene)</li>
-        </ul>
     </description>
     <url type="homepage">https://kitware.github.io/F3D/</url>
     <url type="help">https://kitware.github.io/F3D/docs/</url>
@@ -69,4 +47,4 @@
         <release version="1.1.0" date="2021-01-07">
     </release>
   </releases>
-</component> 
+</component>
