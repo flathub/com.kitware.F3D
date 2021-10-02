@@ -273,7 +273,7 @@ modules:
     sources:
       - type: archive
         url: https://gitlab.kitware.com/f3d/f3d/-/archive/v1.1.0/f3d-v1.1.0.tar.gz
-        sha256: 93aa9759efcc4e77beac4568280aaeaca21bfb233d3c9f60262207ca595bde79
+        sha256: 36d20dc686358897f5b0b1841598fd47394c1a11687682791dc8df56cf5dc10f
         x-checker-data:
           type: anitya
           project-id: 224911
