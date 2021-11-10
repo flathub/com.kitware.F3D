@@ -54,89 +54,90 @@ modules:
           stable-only: true
           url-template: https://github.com/HDFGroup/hdf5/archive/refs/tags/hdf5-$version.tar.gz
 
+        # OSPRay 1.8.0 need old version of TBB,
+        # Could not build from source with make for some reason.
+        # Only new TBB use CMake, we can build from source when OSPRay updates.
+  - name: TBB
+    buildsystem: cmake
+    builddir: true
+    sources:
+      - type: archive
+        url: https://github.com/oneapi-src/oneTBB/archive/refs/tags/v2021.4.0.tar.gz
+        sha256: 021796c7845e155e616f5ecda16daa606ebb4c6f90b996e5c08aebab7a8d3de3
+
     # OSPRay 1.8.0 use Embree 3.4.0  
-  #- name: Embree
-    #buildsystem: cmake-ninja
-    #config-opts:
-      #- -DEMBREE_TUTORIALS:BOOL=OFF
-      #- -DEMBREE_ISPC_SUPPORT:BOOL=ON
-    #sources:
-      #- type: archive
-        #url: https://github.com/embree/embree/archive/refs/tags/v3.4.0.tar.gz
-        #sha256: 22229f19332d4fd08eb3bf60198211bda674f51632b977c9d7fd09531e09dd8d      
-    #modules:
-      #- name: extra-cmake-modules
-        #buildsystem: cmake-ninja
-        #sources:
-          #- type: git
-            #url: https://invent.kde.org/frameworks/extra-cmake-modules.git
-            #tag: v5.78.0
-        ## Attempt to build from source, but ISPC need glic-32bit which make things complicated.
-        ## OSPRay need ISPC 1.9.2.
-      #- name: ISPC
-        #buildsystem: simple
-        #build-commands:
-          #- cp ispc /app/bin/
-        #sources:
-          #- type: archive
-            #url: https://github.com/ispc/ispc/releases/download/v1.9.2/ispc-v1.9.2b-linux.tar.gz
-            #sha256: d8ddcd15f7579c4cc5fecc786be59e11513fec32115d520fc054abe5490e0016
-      #- name: glfw
-        #buildsystem: cmake-ninja
-        #config-opts:
-          #- -DGLFW_USE_WAYLAND:BOOL=ON
-          #- -DBUILD_SHARED_LIBS:BOOL=ON
-          #- -DGLFW_BUILD_EXAMPLES:BOOL=OFF
-          #- -DGLFW_BUILD_TESTS:BOOL=OFF
-          #- -DGLFW_BUILD_DOCS:BOOL=OFF
-        #sources:
-          #- type: archive
-            #url: https://github.com/glfw/glfw/releases/download/3.3.4/glfw-3.3.4.zip
-            #sha256: bbd2c42c660b725e9755eb417e40b373f0d4c03138c9b2e210d02cd308bd99cd
-        ## OSPRay 1.8.0 need old version of TBB, 
-        ## Could not build from source with make for some reason.
-        ## Only new TBB use CMake, we can build from source when OSPRay updates.
-      #- name: TBB
-        #buildsystem: simple
-        #build-commands:
-          #- cp -r bin/* /app/bin
-          #- cp -r include/* /app/include
-          #- cp -r lib/intel64/gcc4.7/* /app/lib
-        #sources:
-          #- type: archive
-            #url: https://github.com/oneapi-src/oneTBB/releases/download/2019_U3/tbb2019_20181203oss_lin.tgz
-            #sha256: 53163b20f911d738e9fa324d320db1154b5c04a6e93f3b69b1dc35fa9ddb80b7
+  - name: Embree
+    buildsystem: cmake-ninja
+    config-opts:
+      - -DEMBREE_TUTORIALS:BOOL=OFF
+      - -DEMBREE_ISPC_SUPPORT:BOOL=ON
+      - -DEMBREE_TBB_INCLUDE_DIR=/app/include
+      - -DEMBREE_TBB_LIBRARY=/app/lib
+      - -DEMBREE_TBBMALLOC_LIBRARY=/app/lib
+    sources:
+      - type: archive
+        url: https://github.com/embree/embree/archive/refs/tags/v3.8.0.tar.gz
+        sha256: 40cbc90640f63c318e109365d29aea00003e4bd14aaba8bb654fc1010ea5753a
+    modules:
+      - name: extra-cmake-modules
+        buildsystem: cmake-ninja
+        sources:
+          - type: git
+            url: https://invent.kde.org/frameworks/extra-cmake-modules.git
+            tag: v5.87.0
+        # Attempt to build from source, but ISPC need glic-32bit which make things complicated.
+        # OSPRay need ISPC 1.9.2.
+      - name: ISPC
+        buildsystem: simple
+        build-commands:
+          - cp bin/ispc /app/bin/
+        sources:
+          - type: archive
+            url: https://github.com/ispc/ispc/releases/download/v1.12.0/ispc-v1.12.0b-linux.tar.gz
+            sha256: 7a2bdd5fff5c1882639cfbd66bca31dbb68c7177f3013e80b0813a37fe0fdc23
+      - name: glfw
+        buildsystem: cmake-ninja
+        config-opts:
+          - -DGLFW_USE_WAYLAND:BOOL=ON
+          - -DBUILD_SHARED_LIBS:BOOL=ON
+          - -DGLFW_BUILD_EXAMPLES:BOOL=OFF
+          - -DGLFW_BUILD_TESTS:BOOL=OFF
+          - -DGLFW_BUILD_DOCS:BOOL=OFF
+        sources:
+          - type: archive
+            url: https://github.com/glfw/glfw/releases/download/3.3.4/glfw-3.3.4.zip
+            sha256: bbd2c42c660b725e9755eb417e40b373f0d4c03138c9b2e210d02cd308bd99cd
     # For ray tracing
     # VTK need old version of OSPRay, would not take new version.
     # Old version of OSPRay need old TBB.
-  #- name: OSPRay
-    #buildsystem: cmake-ninja
-    #builddir: true
-    #sources:
-      #- type: archive
-        #url: https://github.com/ospray/ospray/archive/refs/tags/v1.8.0.tar.gz
-        #sha256: c429c08a025fa5228964d824d112fbbb89385ad850ef4f2d974173ae4be9a819
-    #modules:
-      #- name: rkcommon
-        #buildsystem: cmake
-        #builddir: true
-        #config-opts:
-          #- -DBUILD_TESTING:BOOL=OFF
-        #sources:
-          #- type: archive
-            #url: https://github.com/ospray/rkcommon/archive/refs/tags/v1.6.0.tar.gz
-            #sha256: 24d0c9c58a4d2f22075850df170ec5732cfaa0a16f22f90dbd6538232be009b0
-      # openVKL need ISPC 1.14.1 which OSPRay 1.8.0 does not work with, wait for VTK to update OSPRay requirement.       
-      #- name: openvkl
-        #buildsystem: cmake
-        #builddir: true
-        #config-opts:
-          #- -DBUILD_EXAMPLES:BOOL=OFF
-          #- -DBUILD_BENCHMARKS:BOOL=OFF
-        #sources:
-          #- type: archive
-            #url: https://github.com/openvkl/openvkl/archive/refs/tags/v0.12.1.tar.gz
-            #sha256: 58ce13fe09699a9966b665c89fac0fca96a1155606889e11ec8f0fc34834e25a
+  - name: OSPRay
+    buildsystem: cmake-ninja
+    builddir: true
+    sources:
+      - type: archive
+        url: https://github.com/ospray/ospray/archive/refs/tags/v2.1.0.tar.gz
+        sha256: ab38106beac3868cb39ef35f5564d51277641ecd982afc45e463aada6a124502
+    modules:
+      - name: rkcommon
+        buildsystem: cmake
+        builddir: true
+        config-opts:
+          - -DBUILD_TESTING:BOOL=OFF
+        sources:
+          - type: archive
+            url: https://github.com/ospray/rkcommon/archive/refs/tags/v1.8.0.tar.gz
+            sha256: f037c15f7049610ef8bca37500b2ab00775af60ebbb9d491ba5fc2e5c04a7794
+      #openVKL need ISPC 1.14.1 which OSPRay 1.8.0 does not work with, wait for VTK to update OSPRay requirement.
+      - name: openvkl
+        buildsystem: cmake
+        builddir: true
+        config-opts:
+          - -DBUILD_EXAMPLES:BOOL=OFF
+          - -DBUILD_BENCHMARKS:BOOL=OFF
+        sources:
+          - type: archive
+            url: https://github.com/openvkl/openvkl/archive/refs/tags/v0.9.0.tar.gz
+            sha256: 06aa82c8c3ff68ab93fb8240f4881a1bc238b3de681812e71145f8a1629d3fee
     # When VTK update, update OSPRay, Embree, TBB, ISPC, and OpenImageDenoise too.
     # Needed OSPRay version can be found in vtk/Rendering/RayTracing/CMakeLists.txt
   - name: VTK
