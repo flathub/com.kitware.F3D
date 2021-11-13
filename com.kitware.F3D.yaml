@@ -287,7 +287,7 @@ modules:
       - -DBUILD_TESTING:BOOL=OFF
       - -DF3D_INSTALL_DEFAULT_CONFIGURATION_FILE:BOOL=ON
       - -DF3D_MODULE_EXODUS:BOOL=ON
-      - -DF3D_MODULE_RAYTRACING:BOOL=OFF
+      - -DF3D_MODULE_RAYTRACING:BOOL=ON
       - -DF3D_MODULE_OCCT:BOOL=ON
     post-install:
       - mv /app/etc/f3d/config.json /app/config.json
