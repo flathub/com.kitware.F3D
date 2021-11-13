@@ -62,8 +62,24 @@ modules:
     builddir: true
     sources:
       - type: archive
-        url: https://github.com/oneapi-src/oneTBB/archive/refs/tags/v2021.4.0.tar.gz
-        sha256: 021796c7845e155e616f5ecda16daa606ebb4c6f90b996e5c08aebab7a8d3de3
+        url: https://github.com/oneapi-src/oneTBB/archive/2019_U8.tar.gz
+        sha256: 6b540118cbc79f9cbc06a35033c18156c21b84ab7b6cf56d773b168ad2b68566
+      - type: patch
+        path: tbb_cmake.patch
+
+  #- name: test
+    #buildsystem: simple
+    #ensure-writable:
+      #- /lib
+    #build-commands:
+      #- ln -s /app/lib/libmpi.so /app/lib/libMPI.so
+      #- ls -l /app/lib/ | grep -i libmpi.*
+      #- export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/app/lib
+      #- export LD_RUN_PATH=/app/lib
+      #- export LD_PRELOAD_PATH=/app/lib
+      #- ld -L/app/lib -lMPI --verbose
+      #- ld -L/app/lib -lMPI::MPI_C --verbose
+      #- ld -llib --verbose
 
     # OSPRay 1.8.0 use Embree 3.4.0  
   - name: Embree
@@ -72,8 +88,8 @@ modules:
       - -DEMBREE_TUTORIALS:BOOL=OFF
       - -DEMBREE_ISPC_SUPPORT:BOOL=ON
       - -DEMBREE_TBB_INCLUDE_DIR=/app/include
-      - -DEMBREE_TBB_LIBRARY=/app/lib
-      - -DEMBREE_TBBMALLOC_LIBRARY=/app/lib
+      #- -DEMBREE_TBB_LIBRARY=/app/lib
+      #- -DEMBREE_TBBMALLOC_LIBRARY=/app/lib
     sources:
       - type: archive
         url: https://github.com/embree/embree/archive/refs/tags/v3.8.0.tar.gz
@@ -127,6 +143,13 @@ modules:
           - type: archive
             url: https://github.com/ospray/rkcommon/archive/refs/tags/v1.8.0.tar.gz
             sha256: f037c15f7049610ef8bca37500b2ab00775af60ebbb9d491ba5fc2e5c04a7794
+      - name: ospcommon
+        buildsystem: cmake
+        builddir: true
+        sources:
+          - type: archive
+            url: https://github.com/ospray/ospcommon/archive/refs/tags/v1.3.1.tar.gz
+            sha256: 1c043c4a09e68fb7319db61f28a5830fc09f1457b24155a42b5f7c6421bcca73
       #openVKL need ISPC 1.14.1 which OSPRay 1.8.0 does not work with, wait for VTK to update OSPRay requirement.
       - name: openvkl
         buildsystem: cmake
