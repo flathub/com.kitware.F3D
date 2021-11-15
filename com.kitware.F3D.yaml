@@ -280,7 +280,7 @@ modules:
 
     # Move config.json as upstream request.
   - name: F3D
-    buildsystem: cmake-ninja
+    buildsystem: cmake
     config-opts:
       - -DCMAKE_INSTALL_PREFIX:PATH=/app
       - -DCMAKE_BUILD_TYPE:STRING=Release
