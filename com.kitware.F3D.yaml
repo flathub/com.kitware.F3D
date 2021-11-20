@@ -19,6 +19,14 @@ cleanup:
   - '*.a'
 
 modules:
+  - name: testf
+    buildsystem: simple
+    ensure-writable:
+      - /lib
+    build-commands:
+      - cmake --version
+      - gcc --version
+
   - shared-modules/glew/glew.json
 
   - name: Eigen3
@@ -296,7 +304,7 @@ modules:
       - install -Dm644 $FLATPAK_ID.metainfo.xml /app/share/metainfo/$FLATPAK_ID.metainfo.xml
     sources:
       - type: archive
-        url: https://gitlab.kitware.com/f3d/f3d/-/archive/v1.1.0/f3d-v1.1.0.tar.gz
+        url: https://gitlab.kitware.com/f3d/f3d/-/archive/v1.1.1/f3d-v1.1.1.tar.gz
         sha256: 93aa9759efcc4e77beac4568280aaeaca21bfb233d3c9f60262207ca595bde79
         x-checker-data:
           type: anitya
