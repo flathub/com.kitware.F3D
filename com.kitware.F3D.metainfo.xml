@@ -18,33 +18,39 @@
     <url type="bugtracker">https://gitlab.kitware.com/f3d/f3d/-/issues</url>
     <screenshots>
         <screenshot type="default">
-            <image>https://kitware.github.io/F3D/gallery/04-f3d.png</image>
+            <image>https://f3d-app.github.io/f3d/gallery/directScalars.png</image>
         </screenshot>
         <screenshot>
-            <image>https://kitware.github.io/F3D/gallery/directScalars.png</image>
+            <image>https://camo.githubusercontent.com/264fc8338be6def8986717b5b75a6f1b13d85522ae0fd28611b5f86cbb2afc1f/68747470733a2f2f6633642d6170702e6769746875622e696f2f6633642f67616c6c6572792f6469726563745363616c6172732e706e67</image>
         </screenshot>
         <screenshot>
-            <image>https://kitware.github.io/F3D/gallery/01-f3d.png</image>
+            <image>https://f3d-app.github.io/f3d/gallery/01-f3d.png</image>
         </screenshot>
         <screenshot>
-            <image>https://kitware.github.io/F3D/gallery/02-f3d.png</image>
+            <image>https://f3d-app.github.io/f3d/gallery/02-f3d.png</image>
         </screenshot>
         <screenshot>
-            <image>https://kitware.github.io/F3D/gallery/03-f3d.png</image>
+            <image>https://f3d-app.github.io/f3d/gallery/03-f3d.png</image>
         </screenshot>
         <screenshot>
-            <image>https://kitware.github.io/F3D/gallery/05-f3d.png</image>
+            <image>https://f3d-app.github.io/f3d/gallery/04-f3d.png</image>
         </screenshot>
         <screenshot>
-            <image>https://kitware.github.io/F3D/gallery/07-f3d.png</image>
+            <image>https://f3d-app.github.io/f3d/gallery/05-f3d.png</image>
         </screenshot>
         <screenshot>
-            <image>https://kitware.github.io/F3D/gallery/08-f3d.png</image>
+            <image>https://f3d-app.github.io/f3d/gallery/06-f3d.png</image>
+        </screenshot>
+        <screenshot>
+            <image>https://f3d-app.github.io/f3d/gallery/07-f3d.png</image>
+        </screenshot>
+        <screenshot>
+            <image>https://f3d-app.github.io/f3d/gallery/08-f3d.png</image>
         </screenshot>
     </screenshots>
     <content_rating type="oars-1.1"/>
     <releases>
-        <release version="1.1.0" date="2021-01-07">
-    </release>
+        <release version="1.1.1" date="2021-11-20"/>
+        <release version="1.1.0" date="2021-01-07"/>
   </releases>
 </component>
