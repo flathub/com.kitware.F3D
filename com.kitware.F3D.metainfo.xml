@@ -13,17 +13,11 @@
             controllable using arguments in the command line.
         </p>
     </description>
-    <url type="homepage">https://kitware.github.io/F3D/</url>
-    <url type="help">https://kitware.github.io/F3D/docs/</url>
-    <url type="bugtracker">https://gitlab.kitware.com/f3d/f3d/-/issues</url>
+    <url type="homepage">https://f3d-app.github.io/f3d/</url>
+    <url type="help">https://f3d-app.github.io/f3d/docs/</url>
+    <url type="bugtracker">https://github.com/f3d-app/f3d/issues</url>
     <screenshots>
         <screenshot type="default">
-            <image>https://f3d-app.github.io/f3d/gallery/directScalars.png</image>
-        </screenshot>
-        <screenshot>
-            <image>https://camo.githubusercontent.com/264fc8338be6def8986717b5b75a6f1b13d85522ae0fd28611b5f86cbb2afc1f/68747470733a2f2f6633642d6170702e6769746875622e696f2f6633642f67616c6c6572792f6469726563745363616c6172732e706e67</image>
-        </screenshot>
-        <screenshot>
             <image>https://f3d-app.github.io/f3d/gallery/01-f3d.png</image>
         </screenshot>
         <screenshot>
