@@ -304,8 +304,8 @@ modules:
       - install -Dm644 $FLATPAK_ID.metainfo.xml /app/share/metainfo/$FLATPAK_ID.metainfo.xml
     sources:
       - type: archive
-        url: https://github.com/f3d-app/f3d/archive/refs/tags/v1.1.1.tar.gz
-        sha256: 68bdbe3a90f2cd553d5e090a95d3c847e2a2f06abbe225ffecd47d3d29978b0a
+        url: https://github.com/f3d-app/f3d/archive/refs/tags/v1.1.0.tar.gz
+        sha256: d39cc8d9cf25a9d8695f483c7617ce84deb7c1e6e63386b16a0128701d0a8083
         x-checker-data:
           type: anitya
           project-id: 224911
