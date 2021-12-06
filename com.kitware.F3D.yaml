@@ -288,7 +288,7 @@ modules:
       - mv /app/etc/f3d/config.json /app/config.json
       - install -D resources/logo.svg /app/share/icons/hicolor/scalable/apps/$FLATPAK_ID.svg
       - desktop-file-edit --set-key=Icon --set-value=$FLATPAK_ID /app/share/applications/f3d.desktop
-      - install -Dm644 $FLATPAK_ID.metainfo.xml /app/share/metainfo/$FLATPAK_ID.metainfo.xml
+      #- install -Dm644 $FLATPAK_ID.metainfo.xml /app/share/metainfo/$FLATPAK_ID.metainfo.xml
     sources:
       - type: archive
         url: https://github.com/f3d-app/f3d/archive/refs/tags/v1.2.0.tar.gz
@@ -298,5 +298,5 @@ modules:
           project-id: 224911
           stable-only: true
           url-template: https://github.com/f3d-app/f3d/archive/refs/tags/v$version.tar.gz
-      - type: file
-        path: com.kitware.F3D.metainfo.xml
+      - type: patch
+        path: metadata_releases.patch
