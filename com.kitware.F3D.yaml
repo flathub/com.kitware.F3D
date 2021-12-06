@@ -273,19 +273,6 @@ modules:
           stable-only: true
           url-template: https://www.x.org/archive/individual/lib/libXmu-$version.tar.gz
 
-  - name: OCCT
-    buildsystem: cmake-ninja
-    config-opts:
-      - -D3RDPARTY_TK_INCLUDE_DIR:PATH=/app/include
-    sources:
-      - type: git
-        url: git://github.com/Open-Cascade-SAS/OCCT.git
-        tag: V7_6_0
-        commit: 80ffc5f84dae96de6ed093d3e5d2466a9e368b27
-        x-checker-data:
-          type: git
-          tag-pattern: ^(V[\d._]+)$
-
     # Move config.json as upstream request.
   - name: F3D
     buildsystem: cmake
@@ -304,7 +291,7 @@ modules:
       - install -Dm644 $FLATPAK_ID.metainfo.xml /app/share/metainfo/$FLATPAK_ID.metainfo.xml
     sources:
       - type: archive
-        url: https://github.com/f3d-app/f3d/archive/refs/tags/v1.1.1.tar.gz
+        url: https://github.com/f3d-app/f3d/archive/refs/tags/v1.2.0.tar.gz
         sha256: 68bdbe3a90f2cd553d5e090a95d3c847e2a2f06abbe225ffecd47d3d29978b0a
         x-checker-data:
           type: anitya
