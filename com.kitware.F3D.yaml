@@ -306,4 +306,4 @@ modules:
           stable-only: true
           url-template: https://github.com/f3d-app/f3d/archive/refs/tags/v$version.tar.gz
       - type: patch
-        path: metadata_releases.patch
+        path: fix_metainfo.patch
